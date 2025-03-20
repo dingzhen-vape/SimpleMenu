@@ -25,12 +25,12 @@
 
 ### 🚀 快速开始 | Quick Start
 
-#### 安装依赖 | Install Dependencies 📦
-在命令行中安装以下依赖库：
+#### 安装 | Install 📦
+在命令行中安装：
 
-Install the following dependencies via the terminal:
+Install from command line:
 ```bash
-pip install pygetwindow pywin32
+pip install CL-Simple-Menu
 ```
 
 ---
