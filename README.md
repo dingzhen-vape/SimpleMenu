@@ -13,13 +13,11 @@
 - 🎮 **方向键导航**: 使用方向键（上下）选择，回车键确认。
 - 📋 **索引显示**: 可选择显示选项索引，清晰明了。
 - 🌐 **全局监听**: 支持全局或窗口内的键盘事件监听。
-- ⏱ **自定义延迟**: 可定制选项切换及执行延迟，提升交互体验。
 
 - ✅ **Dynamic Option Addition**: Add options to the menu at any time.
 - 🎮 **Keyboard Navigation**: Navigate with arrow keys (Up/Down) and confirm with Enter.
 - 📋 **Index Display**: Optional display of item indices for clarity.
 - 🌐 **Global Listening**: Supports both global and window-specific keyboard event listening.
-- ⏱ **Custom Delays**: Adjustable delays for smooth navigation and execution.
 
 ---
 
@@ -112,18 +110,6 @@ Exit the menu and stop input listening.
 ```
 通过上下方向键移动箭头选择选项，并按下回车键确认操作。  
 Use the arrow keys to move the selection and press Enter to confirm.
-
----
-
-### 🧩 使用建议 | Usage Tips 💡
-1. **多选项扩展**: 适合任何需要交互式菜单的命令行工具，例如脚本选择器或快捷工具。
-2. **易于定制**: 可根据具体需求调整键盘事件监听或菜单样式。
-3. **结合其他库**: 与其他 Python 库（如 `os` 和 `subprocess`）结合，实现功能丰富的交互式应用。
-
-1. **Multi-option Expansion**: Perfect for any CLI tool requiring interactive menus, such as script selectors or quick utilities.
-2. **Easy Customization**: Adjust keyboard event listening or menu appearance as per your needs.
-3. **Combine with Other Libraries**: Integrate with other Python libraries like `os` and `subprocess` for more powerful applications.
-
 ---
 
 ### 📜 许可协议 | License
