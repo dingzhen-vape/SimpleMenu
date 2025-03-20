@@ -7,7 +7,10 @@ import win32con
 
 def GetActiveWindowHwnd():
     # 获取当前活动窗口的句柄
-    return gw.getActiveWindow()._hWnd
+    try:
+        return gw.getActiveWindow()._hWnd
+    except:
+        return 0
 
 def GetWindowHwnd(name):
     # 根据窗口标题获取窗口句柄，如果未找到则返回 -1
@@ -111,7 +114,9 @@ class SimpleMenu:
         self.Enter = win32con.VK_RETURN
         self.arrow = "<----"
         self.delay = 0.15
-        self.enter_delay = 0.1
+        self.enter_delay = 0.15
+        if self.hWnd != 0:
+            self.GlobalListen = False
     # 添加选项和对应的执行函数
     def addOption(self,value, func = lambda:None):
         self.Options[self.index] = [value,func]#索引和选项内容和执行函数
@@ -140,9 +145,7 @@ class SimpleMenu:
             self.UserChoice = len(self.Options) - 1
     # 根据用户按键执行相应的操作
     def RunFunc(self):
-        def RunFunc():
-            time.sleep(self.enter_delay)
-            while not self.isExit:
+        def checkKey():
                 if win32api.GetAsyncKeyState(self.Enter) < 0:
                     self.isRunningFunc = True
                     self.Options[self.UserChoice][1]()
@@ -159,19 +162,22 @@ class SimpleMenu:
                         self.LimitUserChoice()
                         self.ShowOptions()
                         time.sleep(self.delay)
-
                 elif win32api.GetAsyncKeyState(self.Down) < 0:
                     self.UserChoice += 1
                     if not self.isExit:
                         self.LimitUserChoice()
                         self.ShowOptions()
                         time.sleep(self.delay)
+        def RunFunc():
+            time.sleep(self.enter_delay)
+            while not self.isExit:
+                if GetActiveWindowHwnd() == self.hWnd:
+                    checkKey()
+                elif self.GlobalListen:
+                    checkKey()
 
         if not self.isRunningFunc:
-            if gw.getActiveWindow()._hWnd == self.hWnd:
-                RunFunc()
-            elif self.GlobalListen:
-                RunFunc()
+            RunFunc()
     # 监听键盘输入
     def HookKeyborad(self):
         self.RunFunc()
