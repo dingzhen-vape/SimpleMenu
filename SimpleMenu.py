@@ -29,6 +29,7 @@ class SimpleMenu:
     - Starting: 布尔值，指示菜单是否正在启动。
     - isExit: 布尔值，指示菜单是否应该退出。
     - isRunningFunc: 布尔值，指示当前是否有菜单选项的处理函数正在运行。
+    - isOneTime: 布尔值，指示菜单是否运行函数后自动退出。
     - ShowIndex: 布尔值，指示菜单项是否显示索引。
     - GlobalListen: 布尔值，指示是否全局监听键盘或鼠标事件。
     - Down: 整数，指示向下选择所需按键的虚拟键码。
@@ -98,13 +99,14 @@ class SimpleMenu:
     - GetWindowHwnd : Gets the handle of the window with the specified title, or -1 if not found.
     """
 
-    def __init__(self,hWnd = 0,GlobalListen = True , ShowIndex = False):
+    def __init__(self,hWnd = 0,GlobalListen = True , ShowIndex = False ,OneTime = False):
         # 初始化菜单选项、用户选择等属性
         self.Options = {}
         self.index = 0
         self.Starting = False
         self.isExit = False
         self.isRunningFunc = False
+        self.isOneTime = OneTime
         self.ShowIndex = ShowIndex
         self.GlobalListen = GlobalListen
         self.hWnd= hWnd
@@ -152,10 +154,13 @@ class SimpleMenu:
                     self.UserChoice = 0
                     self.isRunningFunc = False
                     if not self.isExit:
-                        self.LimitUserChoice()
+                        if self.isOneTime:
+                            self.Exit()
+                        else:
+                            self.LimitUserChoice()
+                            self.ShowOptions()
+                            time.sleep(self.delay)
 
-                        self.ShowOptions()
-                        time.sleep(self.delay)
                 elif win32api.GetAsyncKeyState(self.Up) < 0:
                     self.UserChoice -= 1
                     if not self.isExit:
