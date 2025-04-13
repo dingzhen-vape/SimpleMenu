@@ -55,7 +55,7 @@ menu.addOption("🌟 Print Hello World", HelloWorld)
 menu.addOption("❌ Exit Menu", menu.Exit)
 
 # 显示菜单 | Display the menu
-menu.ShowMenu()
+menu.Start()
 ```
 
 运行该代码后，通过键盘上下方向键导航选项，按下回车键执行选项操作。🎉  
@@ -91,10 +91,9 @@ Add an option to the menu.
 
 ---
 
-#### `ShowMenu()`
+#### `Start()`
 📜 显示菜单并开始监听用户输入。  
 Display the menu and start listening for user input.
-
 ---
 
 #### `Exit()`
