@@ -1,24 +1,26 @@
 
+
 from SimpleMenu import *
 class Callable:
     pass
 
-class MultiChoice(SimpleMenu):
+class MultiSelectMenu(SimpleMenu):
     def __init__(self, hWnd=0, GlobalListen=True, ShowIndex=False):
         super().__init__(hWnd, GlobalListen, ShowIndex)
 
 
 
-        self.ChoicedOptions = {}
-        self.selects = None
+        self.ChoicedOptions:dict[int,bool] = {}
+        self.selects:dict[int,Callable] = None
 
     def addOption(self, value, func=lambda: None):
         self.Options[self.index] = [value, func]  # 索引和选项内容及执行函数
         self.index += 1
+        self.RefershSelects()
+        return self
+    def RefershSelects(self):
         for i in range(self.Options.__len__()):
             self.ChoicedOptions[i] = False
-        return self
-
     def ShowOptions(self):
         """
         刷新并显示当前的选项菜单。
@@ -54,7 +56,7 @@ class MultiChoice(SimpleMenu):
                 self.isRunningFunc = True
                 self.ChoicedOptions[self.UserChoice] = not self.ChoicedOptions[self.UserChoice]
                 if self.Options[self.UserChoice][1] == self.ChoiceComplete:
-                    self.selects =  self.Options[self.UserChoice][1]()
+                    self.Options[self.UserChoice][1]()
                 self.isRunningFunc = False
                 CheckIsExit()
 
@@ -79,6 +81,11 @@ class MultiChoice(SimpleMenu):
 
     def ChoiceComplete(self) -> dict[int, list[str, Callable]]:
         self.Exit()
-        return {key:self.Options[key] for key,value in self.ChoicedOptions.items() if value}
-    def GetSlects(self):
+        self.selects = {key:self.Options[key] for key,value in self.ChoicedOptions.items() if value and self.Options[key][1]!= self.ChoiceComplete}
+        self.RefershSelects()
         return self.selects
+    def GetSlects(self):# -> dict | None:
+        if self.selects:
+            return self.selects
+        else:
+            return None
