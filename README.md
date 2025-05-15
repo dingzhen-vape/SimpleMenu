@@ -56,6 +56,19 @@ menu.addOption("❌ Exit Menu", menu.Exit)
 
 # 显示菜单 | Display the menu
 menu.Start()
+
+#多选菜单
+demo = clsMenu.MultiSelectMenu() #继承自SimpleMenu 支持多选
+demo.ChoiceComplete #完成选择，请在菜单页面的一个选项内添加这个函数
+demo.GetSlects:dict[int,Option] #返回一个字典,键为自定数据类 Value为选项的内容，func为执行的函数
+
+#多页菜单
+OptionsPerPageNum = 5
+demo = clsMenu.MultiPageMenu(OptionsPerPageNum) #每页显示多少个选项
+#这个类会自动根据你加入的选项数量自行安排页数
+#按左和右可以切换页数
+#切换选项时如果超出了当前页的选项会自动跳转到下一页
+demo.GotoPage(Num) #传入要去的页数
 ```
 
 运行该代码后，通过键盘上下方向键导航选项，按下回车键执行选项操作。🎉  
