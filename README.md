@@ -48,7 +48,8 @@ def HelloWorld():
     time.sleep(2)  # 停顿 2 秒观察效果 | Pause for 2 seconds to observe the output
 
 # 创建菜单实例 | Create a menu instance
-menu = clsMenu.SimpleMenu()
+menu = clsMenu.SimpleMenu(hWnd=0, GlobalListen=True, ShowIndex=False, OneTime=False)
+#参数分别为 hWnd 全局监听 显示索引 运行一次
 
 # 添加选项 | Add options
 menu.addOption("🌟 Print Hello World", HelloWorld)
