@@ -1,16 +1,19 @@
 from multiprocessing import process
+from optparse import Option
 import os
 import time
 import pygetwindow as gw
 import win32api
 import win32con
+import msvcrt
+from .Dataclass import *
 from functools import singledispatch, singledispatchmethod
 
 
 def GetActiveWindowHwnd():
     # 获取当前活动窗口的句柄
     try:
-        return gw.getActiveWindow()._hWnd
+        return gw.getActiveWindow()._hWnd # type: ignore
     except:
         return 0
 
@@ -57,6 +60,10 @@ class SimpleMenu:
         if self.hWnd != 0:
             self.GlobalListen = False
 
+    def ClearInput(self):
+        while msvcrt.kbhit():
+            msvcrt.getch()
+
     def addOption(self, value, func=lambda: None):
         """
         添加选项和对应的执行函数。
@@ -65,7 +72,7 @@ class SimpleMenu:
         - value: 字符串，菜单选项的显示内容。
         - func: 函数，用户选择该选项时调用的处理函数。
         """
-        self.Options[self.index] = [value, func]  # 索引和选项内容及执行函数
+        self.Options[self.index] = Option(value,func)  # 索引和选项内容及执行函数
         self.index += 1
         return self
 
