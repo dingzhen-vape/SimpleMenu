@@ -1,5 +1,6 @@
 import functools # type: ignore
-from SimpleMenu import *
+from .SimpleMenu import *
+from .Dataclass import *
 class MultiPageMenu(SimpleMenu):
     def __init__(self, hWnd=0, GlobalListen=True, ShowIndex=False, OneTime=False,OptionsPerPageNum = 5):
         super().__init__(hWnd, GlobalListen, ShowIndex, OneTime)
@@ -92,7 +93,7 @@ class MultiPageMenu(SimpleMenu):
         num = 0
         flag = 0
         OptionsList = list(self.Options.items())
-        while flag + self.OptionsPerPageNum <= len(self.Options):#判断是否可以分成多页
+        while flag + self.OptionsPerPageNum < len(self.Options):#判断是否可以分成多页
             flag = num*self.OptionsPerPageNum
             self.Pages.append(OptionsList[flag:flag+self.OptionsPerPageNum])#将选项分成每页的数量
             num += 1
