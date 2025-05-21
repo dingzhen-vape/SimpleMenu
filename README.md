@@ -8,19 +8,6 @@
 
 ---
 
-### ✨ 功能特点 | Features 🔑
-- ✅ **动态选项添加**: 支持随时向菜单添加选项。
-- 🎮 **方向键导航**: 使用方向键（上下）选择，回车键确认。
-- 📋 **索引显示**: 可选择显示选项索引，清晰明了。
-- 🌐 **全局监听**: 支持全局或窗口内的键盘事件监听。
-
-- ✅ **Dynamic Option Addition**: Add options to the menu at any time.
-- 🎮 **Keyboard Navigation**: Navigate with arrow keys (Up/Down) and confirm with Enter.
-- 📋 **Index Display**: Optional display of item indices for clarity.
-- 🌐 **Global Listening**: Supports both global and window-specific keyboard event listening.
-
----
-
 ### 🚀 快速开始 | Quick Start
 
 #### 安装 | Install 📦
@@ -77,59 +64,7 @@ Run the code, navigate options with the arrow keys, and press Enter to execute a
 
 ---
 
-### 🛠️ API 文档 | API Documentation 📚
-
-#### `SimpleMenu.__init__(hWnd=0, GlobalListen=True, ShowIndex=False)`
-初始化菜单系统。  
-Initialize the menu system.
-
-参数 | Parameters:
-- **`hWnd`**: 窗口句柄 (默认值为 0，表示全局监听)。  
-  Window handle (default is 0 for global listening).
-- **`GlobalListen`**: 是否启用全局键盘监听 (默认为 True)。  
-  Enable global keyboard listening (default is True).
-- **`ShowIndex`**: 菜单项是否显示序号 (默认为 False)。  
-  Display menu item indices (default is False).
-
----
-
-#### `addOption(value, func=lambda: None)`
-向菜单添加一个选项。  
-Add an option to the menu.
-
-参数 | Parameters:
-- **`value`**: 选项的显示名称。  
-  The name of the menu option.
-- **`func`**: 选项对应的执行函数 (默认为空函数)。  
-  The function to execute when the option is selected (default is a no-op).
-
----
-
-#### `Start()`
-📜 显示菜单并开始监听用户输入。  
-Display the menu and start listening for user input.
----
-
-#### `Exit()`
-🚪 退出菜单并停止监听。  
-Exit the menu and stop input listening.
-
----
-
-### 🎨 示例输出 | Example Output
-```text
-🌟 Print Hello World <----
-❌ Exit Menu
-```
-通过上下方向键移动箭头选择选项，并按下回车键确认操作。  
-Use the arrow keys to move the selection and press Enter to confirm.
----
-
 ### 📜 许可协议 | License
 该项目基于 **MIT License** 开源，您可以自由使用、修改和分发。⚖️  
 This project is open-sourced under the **MIT License**, allowing free use, modification, and distribution. ⚖️
 
----
-
-🎉 **SimpleMenu，简约的命令行菜单解决方案！期待您的反馈！**  
-🎉 **SimpleMenu, a minimal yet powerful CLI menu solution! Looking forward to your feedback!**
